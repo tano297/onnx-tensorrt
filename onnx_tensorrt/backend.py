@@ -101,12 +101,6 @@ class TensorRTBackendRep(BackendRep):
         else:
             self.builder.set_max_batch_size(max_batch_size)
             self.builder.set_max_workspace_size(max_workspace_size)
-
-        for layer in self.network:
-            print(layer.name)
-
-        print(self.network[-1].get_output(0).shape)
-        import pdb; pdb.set_trace()
             
         trt_engine = self.builder.build_cuda_engine(self.network)
         if trt_engine is None:
